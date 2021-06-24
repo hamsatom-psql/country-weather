@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
+import restcountries.config.RestCountriesConfig;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -22,7 +24,8 @@ import springfox.documentation.spring.web.plugins.Docket;
         HibernateJpaAutoConfiguration.class,
         UserDetailsServiceAutoConfiguration.class
 })
-@ComponentScan(basePackages = {"controller", "service"})
+@Import({RestCountriesConfig.class})
+@ComponentScan(basePackages = {"controller", "service", "restcountries"})
 public class SpringBootMainClass implements WebFluxConfigurer {
 
     public static void main(String[] args) {
