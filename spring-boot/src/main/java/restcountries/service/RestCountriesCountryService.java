@@ -34,10 +34,11 @@ public class RestCountriesCountryService implements ICountryService {
 
     @Nonnull
     @Override
-    public Mono<CountryDetail> fetchCountryDetail(@Nonnull Mono<String> countryName) {
-        return countryName.as(name -> webClient.get().uri("/name/" + name))
+    public Mono<CountryDetail> fetchCountryDetail(@Nonnull String countryName) {
+        return webClient.get().uri("/name/" + countryName)
                 .retrieve()
-                .bodyToMono(RestCountriesCountry.class)
+                .bodyToFlux(RestCountriesCountry.class)
+                .singleOrEmpty()
                 .map(RestCountriesCountry::toCountryDetail);
     }
 }

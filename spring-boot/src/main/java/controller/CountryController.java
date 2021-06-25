@@ -30,7 +30,7 @@ public class CountryController {
 
     @GetMapping(path = "/countries/{name}")
     @Nonnull
-    public Mono<CountryDetail> getCountryDetail(@PathVariable @Nonnull Mono<String> name) {
+    public Mono<CountryDetail> getCountryDetail(@PathVariable @Nonnull String name) {
         return service.fetchCountryDetail(name);
     }
 }

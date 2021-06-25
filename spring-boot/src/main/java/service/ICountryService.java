@@ -12,5 +12,5 @@ public interface ICountryService {
     Flux<Country> fetchCountries();
 
     @Nonnull
-    Mono<CountryDetail> fetchCountryDetail(@Nonnull Mono<String> countryName);
+    Mono<CountryDetail> fetchCountryDetail(@Nonnull String countryName);
 }
