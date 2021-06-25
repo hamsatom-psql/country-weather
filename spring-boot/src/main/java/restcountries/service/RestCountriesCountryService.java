@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import restcountries.model.RestCountriesCountry;
 import service.ICountryService;
 
 import javax.annotation.Nonnull;
@@ -27,7 +28,8 @@ public class RestCountriesCountryService implements ICountryService {
         return webClient.get()
                 .uri("/all")
                 .retrieve()
-                .bodyToFlux(Country.class); // TODO FIXME to rest countries model
+                .bodyToFlux(RestCountriesCountry.class)
+                .map(RestCountriesCountry::toCountry);
     }
 
     @Nonnull
@@ -35,6 +37,7 @@ public class RestCountriesCountryService implements ICountryService {
     public Mono<CountryDetail> fetchCountryDetail(@Nonnull Mono<String> countryName) {
         return countryName.as(name -> webClient.get().uri("/name/" + name))
                 .retrieve()
-                .bodyToMono(CountryDetail.class); // TODO FIXME to rest countries model
+                .bodyToMono(RestCountriesCountry.class)
+                .map(RestCountriesCountry::toCountryDetail);
     }
 }
