@@ -5,6 +5,7 @@ class IndexController {
         // Add event listeners
         IndexController.addBlurHandlerOnId(["city", "state", "country", "units"]);
         IndexController.addClickHandlerOnId(["show"]);
+        IndexController.useInput();
     }
 
     static populateValues() {
