@@ -1,15 +1,15 @@
-package restcountries.service;
+package org.restcountries.service;
 
-import model.Country;
-import model.CountryDetail;
+import org.model.Country;
+import org.model.CountryDetail;
+import org.restcountries.model.RestCountriesCountry;
+import org.service.ICountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import restcountries.model.RestCountriesCountry;
-import service.ICountryService;
 
 import javax.annotation.Nonnull;
 

@@ -1,7 +1,7 @@
-package restcountries.model;
+package org.restcountries.model;
 
-import model.Country;
-import model.CountryDetail;
+import org.model.Country;
+import org.model.CountryDetail;
 
 import javax.annotation.Nonnull;
 import java.io.Serializable;

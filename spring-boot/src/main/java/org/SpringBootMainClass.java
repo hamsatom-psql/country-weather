@@ -1,3 +1,6 @@
+package org;
+
+import org.restcountries.config.RestCountriesConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -9,7 +12,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
-import restcountries.config.RestCountriesConfig;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -25,7 +27,7 @@ import springfox.documentation.spring.web.plugins.Docket;
         UserDetailsServiceAutoConfiguration.class
 })
 @Import({RestCountriesConfig.class})
-@ComponentScan(basePackages = {"controller", "service", "restcountries"})
+@ComponentScan(basePackages = {"org.controller", "org.service", "org.restcountries"})
 public class SpringBootMainClass implements WebFluxConfigurer {
 
     public static void main(String[] args) {
@@ -36,7 +38,7 @@ public class SpringBootMainClass implements WebFluxConfigurer {
     public Docket api() {
         return new Docket(DocumentationType.OAS_30)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("controller"))
+                .apis(RequestHandlerSelectors.basePackage("org.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaData());

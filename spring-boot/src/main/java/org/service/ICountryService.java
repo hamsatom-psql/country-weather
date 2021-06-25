@@ -1,7 +1,7 @@
-package service;
+package org.service;
 
-import model.Country;
-import model.CountryDetail;
+import org.model.Country;
+import org.model.CountryDetail;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
