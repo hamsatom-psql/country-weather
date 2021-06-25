@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>City weather conditions</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="IndexController.js"></script>
+</head>
+<body>
+
+<main class="index-page">
+    <h1>City weather conditions</h1>
+    <section>
+        <input autofocus id="city" placeholder="City name" required="true" title="City to search weather conditions in"
+               type="text">
+        <input id="state" placeholder="State code" required="true" title="ISO 3166 state code" type="text">
+        <input id="country" placeholder="Country code" required="true" title="ISO 3166 country code" type="text">
+        <select id="units">
+            <option selected value="metric">Metric units</option>
+            <option value="imperial">Imperial units</option>
+        </select>
+        <button id="show">Get weather conditions</button>
+    </section>
+    <section id="weather"/>
+</main>
+
+<script>
+    new IndexController();
+
+</script>
+
+</body>
+</html>
