@@ -49,3 +49,11 @@ html, body {
     font-variant-caps: small-caps;
     border: 1px solid
 }
+
+.weather-condition {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}

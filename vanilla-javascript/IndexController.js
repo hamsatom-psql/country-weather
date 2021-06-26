@@ -9,7 +9,7 @@ class IndexController {
     }
 
     static populateValues() {
-        for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+        for (let i = 0, len = localStorage.length; i < len; ++i) {
             const id = localStorage.key(i)
             const element = document.getElementById(id)
             if (element) {
@@ -49,7 +49,7 @@ class IndexController {
     static addHandlerOnId(func, event, ids) {
         ids.forEach(id => {
             const elem = document.getElementById(id);
-            console.assert(elem != null && elem !== undefined, `Element not found for id ${id}`);
+            console.assert(elem != null, `Element not found for id ${id}`);
             elem.addEventListener(event, func);
         });
     }
@@ -86,25 +86,33 @@ class IndexController {
             weatherList.forEach(weather => {
                 const city = document.createElement("div");
                 city.classList.add("city-weather");
-                IndexController.addCondition(city, "", weather.sys.country ? `${weather.name}, ${weather.sys.country}` : weather.name)
-                IndexController.addCondition(city, "", weather.weather[0].description, "strong")
-                IndexController.addCondition(city, "Temperature ", weather.main.temp)
-                IndexController.addCondition(city, "Feels like ", weather.main.feels_like)
-                IndexController.addCondition(city, "Lowest temperature ", weather.main.temp_min)
-                IndexController.addCondition(city, "Highest temperature ", weather.main.temp_max)
-                IndexController.addCondition(city, "Humidity ", weather.main.humidity)
+                IndexController.addCondition(city, "", weather.sys.country ? `${weather.name}, ${weather.sys.country}` : weather.name, "div")
+                IndexController.addCondition(city, "", weather.weather[0].description, "strong", weather.weather[0].icon)
+                IndexController.addCondition(city, "Temperature ", `${weather.main.temp}°`)
+                IndexController.addCondition(city, "Feels like ", `${weather.main.feels_like}°`)
+                IndexController.addCondition(city, "Lowest temperature ", `${weather.main.temp_min}°`)
+                IndexController.addCondition(city, "Highest temperature ", `${weather.main.temp_max}°`)
+                IndexController.addCondition(city, "Humidity ", `${weather.main.humidity}%`)
                 IndexController.addCondition(city, "Wind speed ", weather.wind.speed)
                 section.appendChild(city)
             })
         }
     }
 
-    static addCondition(section, name, value, element = "div") {
+    static addCondition(section, name, value, element = "div", image = null) {
         if (value) {
             const condition = document.createElement(element);
             condition.innerText = `${name}${value}`
             condition.classList.add("weather-condition");
             section.appendChild(condition)
+
+            if (image) {
+                const img = document.createElement("img");
+                img.src = `assets/${image}.png`
+                img.style.height = "2.5rem";
+                img.loading = "lazy";
+                condition.appendChild(img)
+            }
         }
     }
 }
