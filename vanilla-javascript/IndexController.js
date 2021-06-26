@@ -86,7 +86,7 @@ class IndexController {
             weatherList.forEach(weather => {
                 const city = document.createElement("div");
                 city.classList.add("city-weather");
-                IndexController.addCondition(city, `${weather.name}, `, weather.sys.country)
+                IndexController.addCondition(city, "", weather.sys.country ? `${weather.name}, ${weather.sys.country}` : weather.name)
                 IndexController.addCondition(city, "", weather.weather[0].description, "strong")
                 IndexController.addCondition(city, "Temperature ", weather.main.temp)
                 IndexController.addCondition(city, "Feels like ", weather.main.feels_like)
