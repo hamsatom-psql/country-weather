@@ -63,7 +63,7 @@ class IndexController {
         if (city) {
             IndexController.fetchWeather(city, state, country, units, navigator.language)
                 .then(response => response.json())
-                .then(json => IndexController.renderWeather(json.list[0]))
+                .then(json => IndexController.renderWeather(json.list))
         }
     }
 
@@ -79,18 +79,23 @@ class IndexController {
         return trimmedValue;
     }
 
-    static renderWeather(weather) {
-        if (weather) {
+    static renderWeather(weatherList) {
+        if (weatherList) {
             const section = document.getElementById("weather")
             section.textContent = ''
-            IndexController.addCondition(section, `${weather.name}, `, weather.sys.country)
-            IndexController.addCondition(section, "", weather.weather[0].description, "strong")
-            IndexController.addCondition(section, "Temperature ", weather.main.temp)
-            IndexController.addCondition(section, "Feels like ", weather.main.feels_like)
-            IndexController.addCondition(section, "Lowest temperature ", weather.main.temp_min)
-            IndexController.addCondition(section, "Highest temperature ", weather.main.temp_max)
-            IndexController.addCondition(section, "Humidity ", weather.main.humidity)
-            IndexController.addCondition(section, "Wind speed ", weather.wind.speed)
+            weatherList.forEach(weather => {
+                const city = document.createElement("div");
+                city.classList.add("city-weather");
+                IndexController.addCondition(city, `${weather.name}, `, weather.sys.country)
+                IndexController.addCondition(city, "", weather.weather[0].description, "strong")
+                IndexController.addCondition(city, "Temperature ", weather.main.temp)
+                IndexController.addCondition(city, "Feels like ", weather.main.feels_like)
+                IndexController.addCondition(city, "Lowest temperature ", weather.main.temp_min)
+                IndexController.addCondition(city, "Highest temperature ", weather.main.temp_max)
+                IndexController.addCondition(city, "Humidity ", weather.main.humidity)
+                IndexController.addCondition(city, "Wind speed ", weather.wind.speed)
+                section.appendChild(city)
+            })
         }
     }
 
