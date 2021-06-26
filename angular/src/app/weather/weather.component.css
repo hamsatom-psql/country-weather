@@ -1,0 +1,15 @@
+.weather {
+    margin-top: 4%;
+    font-size: 250%;
+}
+
+.city-weather {
+    background: rgb(34, 193, 195);
+    background: linear-gradient(0deg, rgba(34, 193, 195, 0.4990371148459384) 0%, rgba(253, 187, 45, 0.4990371148459384) 100%);
+}
+
+.weather-condition:first-child {
+    text-align: center;
+    font-variant-caps: small-caps;
+    border: 1px solid
+}

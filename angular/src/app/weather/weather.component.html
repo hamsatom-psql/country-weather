@@ -1,0 +1,26 @@
+<section>
+    <input (change)="getWeather()" [(ngModel)]="city" autofocus placeholder="City name"
+           required="true" title="City to search weather conditions in" type="text">
+    <input (change)="getWeather()" [(ngModel)]="state" placeholder="State code" required="true"
+           title="ISO 3166 state code" type="text">
+    <input (change)="getWeather()" [(ngModel)]="country" placeholder="Country code" required="true"
+           title="ISO 3166 country code" type="text">
+    <select (change)="getWeather()" [(ngModel)]="selectedUnit">
+        <option *ngFor="let unit of units">
+            {{unit.name}}
+        </option>
+    </select>
+    <button (click)="getWeather()">Show weather</button>
+</section>
+<section class="weather">
+    <div *ngFor="let cityWeather of weather" class="city-weather">
+        <div class="weather-condition">{{cityWeather.place}}</div>
+        <strong class="weather-condition">{{cityWeather.description}}</strong>
+        <div class="weather-condition">{{cityWeather.temperature}}</div>
+        <div class="weather-condition">{{cityWeather.temperatureFeel}}</div>
+        <div class="weather-condition">{{cityWeather.temperatureMin}}</div>
+        <div class="weather-condition">{{cityWeather.temperatureMax}}</div>
+        <div class="weather-condition">{{cityWeather.humidity}}</div>
+        <div class="weather-condition">{{cityWeather.windSpeed}}</div>
+    </div>
+</section>
