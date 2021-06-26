@@ -14,7 +14,7 @@ export class WeatherComponent implements OnInit {
         {name: "Metric units", value: Units.Metric},
         {name: "Imperial units", value: Units.Imperial}
     ];
-    selectedUnit: Units = Units.Metric;
+    selectedUnit: string = localStorage.getItem("selectedUnit") ?? Units.Metric;
     state: string = localStorage.getItem("state") ?? ""
     country: string = localStorage.getItem("country") ?? ""
     weather: Weather[] = [];
