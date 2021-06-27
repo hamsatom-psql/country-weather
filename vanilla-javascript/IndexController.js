@@ -24,9 +24,9 @@ class IndexController {
         let query = `&q=${city}`
         if (state) {
             query += `,${state}`
-            if (country) {
-                query += `,${country}`
-            }
+        }
+        if (country) {
+            query += `,${country}`
         }
         query += `&units=${units}`
         query += language ? `&lang=${language}` : ""
