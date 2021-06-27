@@ -21,12 +21,8 @@ export class WeatherService {
 
     getWeather(city: string, units: string, state: string, country: string): Observable<Weather[]> {
         let query = `&q=${city}`
-        if (state) {
-            query += `,${state}`
-            if (country) {
-                query += `,${country}`
-            }
-        }
+        query += state ? `,${state}` : ""
+        query += country ? `,${country}` : ""
         query += `&units=${units}`
         query += navigator.language ? `&lang=${navigator.language}` : ""
         const url = `${this.weatherMapUrl}${query}`;
@@ -40,6 +36,7 @@ export class WeatherService {
                     temperatureMax: city.main.temp_max,
                     temperatureMin: city.main.temp_min,
                     place: city.sys.country ? `${city.name}, ${city.sys.country}` : city.name,
+                    country: city.sys.country,
                     windSpeed: city.wind.speed,
                     iconName: city.weather[0].icon,
                 }

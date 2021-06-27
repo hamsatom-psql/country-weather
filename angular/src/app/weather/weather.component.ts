@@ -16,7 +16,8 @@ export class WeatherComponent implements OnInit {
     ];
     selectedUnit: string = localStorage.getItem("selectedUnit") ?? Units.Metric;
     state: string = localStorage.getItem("state") ?? ""
-    country: string = localStorage.getItem("country") ?? ""
+    selectedCountry: string = localStorage.getItem("country") ?? ""
+    countries: Set<string> = new Set<string>();
     weather: Weather[] = [];
 
     constructor(private weatherService: WeatherService) {
@@ -29,8 +30,12 @@ export class WeatherComponent implements OnInit {
     getWeather(): void {
         this.saveState();
         if (this.city) {
-            this.weatherService.getWeather(this.city, this.selectedUnit, this.state, this.country)
-                .subscribe(weather => this.weather = weather);
+            this.weatherService.getWeather(this.city, this.selectedUnit, this.state, this.selectedCountry)
+                .subscribe(weather => {
+                    this.weather = weather
+                    this.countries = new Set<string>(weather.map(w => w.country))
+                    this.countries.add("")
+                });
         }
     }
 
@@ -40,8 +45,7 @@ export class WeatherComponent implements OnInit {
         localStorage.setItem("selectedUnit", this.selectedUnit)
         this.state = this.state.trim();
         localStorage.setItem("state", this.state)
-        this.country = this.country.trim();
-        localStorage.setItem("country", this.country)
+        localStorage.setItem("country", this.selectedCountry)
     }
 }
 

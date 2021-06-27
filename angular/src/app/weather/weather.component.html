@@ -3,8 +3,9 @@
            required title="City name" type="text">
     <input (change)="getWeather()" [(ngModel)]="state" placeholder="State code"
            title="ISO 3166 state code" type="text">
-    <input (change)="getWeather()" [(ngModel)]="country" placeholder="Country code"
-           title="ISO 3166 country code" type="text">
+    <select (change)="getWeather()" [(ngModel)]="selectedCountry" title="ISO 3166 country code">
+        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+    </select>
     <select (change)="getWeather()" [(ngModel)]="selectedUnit" title="Units of measurement">
         <option *ngFor="let unit of units" [value]="unit.value">{{unit.name}}</option>
     </select>
