@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Weather} from "../weather";
 import {WeatherService} from "../weather.service";
-import {Units} from "../units";
+import {getTemperatureUnit, getUnits, getWindSpeedUnit, Units} from "../units";
 
 @Component({
     selector: 'weather',
@@ -14,11 +14,13 @@ export class WeatherComponent implements OnInit {
         {name: "Metric units", value: Units.Metric},
         {name: "Imperial units", value: Units.Imperial}
     ];
-    selectedUnit: string = localStorage.getItem("selectedUnit") ?? Units.Metric;
+    selectedUnit: Units = getUnits(localStorage.getItem("selectedUnit"));
     state: string = localStorage.getItem("state") ?? ""
     selectedCountry: string = localStorage.getItem("country") ?? ""
     countries: Set<string> = new Set<string>();
     weather: Weather[] = [];
+    windSpeedUnit: string = getWindSpeedUnit(this.selectedUnit);
+    temperatureUnit: string = getTemperatureUnit(this.selectedUnit);
 
     constructor(private weatherService: WeatherService) {
     }
@@ -33,6 +35,8 @@ export class WeatherComponent implements OnInit {
             this.weatherService.getWeather(this.city, this.selectedUnit, this.state, this.selectedCountry)
                 .subscribe(weather => {
                     this.weather = weather
+                    this.windSpeedUnit = getWindSpeedUnit(this.selectedUnit)
+                    this.temperatureUnit = getTemperatureUnit(this.selectedUnit)
                     this.countries = new Set<string>(weather.map(w => w.country))
                     this.countries.add("")
                 });

@@ -6,6 +6,7 @@ import {catchError, map} from 'rxjs/operators';
 
 import {Weather} from "./weather";
 import {OpenWeatherMapWeather} from "./open.weather.map.weather";
+import {Units} from "./units";
 
 
 @Injectable({providedIn: 'root'})
@@ -19,7 +20,7 @@ export class WeatherService {
     constructor(private http: HttpClient) {
     }
 
-    getWeather(city: string, units: string, state: string, country: string): Observable<Weather[]> {
+    getWeather(city: string, units: Units, state: string, country: string): Observable<Weather[]> {
         let query = `&q=${city}`
         query += state ? `,${state}` : ""
         query += country ? `,${country}` : ""

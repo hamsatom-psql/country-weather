@@ -18,11 +18,11 @@
             <img alt="weather icon" class="weather-icon" loading="lazy" src="assets/{{cityWeather.iconName}}.png">
             {{cityWeather.description}}
         </strong>
-        <div class="weather-condition">Temperature {{cityWeather.temperature}}°</div>
-        <div class="weather-condition">Feels like {{cityWeather.temperatureFeel}}°</div>
-        <div class="weather-condition">Lowest temperature {{cityWeather.temperatureMin}}°</div>
-        <div class="weather-condition">Highest temperature {{cityWeather.temperatureMax}}°</div>
+        <div class="weather-condition">Temperature {{cityWeather.temperature}}{{temperatureUnit}}</div>
+        <div class="weather-condition">Feels like {{cityWeather.temperatureFeel}}{{temperatureUnit}}</div>
+        <div class="weather-condition">Lowest temperature {{cityWeather.temperatureMin}}{{temperatureUnit}}</div>
+        <div class="weather-condition">Highest temperature {{cityWeather.temperatureMax}}{{temperatureUnit}}</div>
         <div class="weather-condition">Humidity {{cityWeather.humidity}}%</div>
-        <div class="weather-condition">Wind speed {{cityWeather.windSpeed}}</div>
+        <div class="weather-condition">Wind speed {{cityWeather.windSpeed}} {{windSpeedUnit}}</div>
     </div>
 </section>
