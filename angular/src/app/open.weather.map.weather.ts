@@ -1,5 +1,4 @@
 export interface OpenWeatherMapWeather {
-    count: number;
     list: OpenWeatherCity[];
 }
 
