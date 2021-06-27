@@ -14,12 +14,14 @@ public class RestCountriesCountry implements Serializable {
     private long population;
     private String alpha2Code;
 
+    @Nonnull
     public Country toCountry() {
         return new Country()
                 .setCountryCode(alpha2Code)
                 .setName(name);
     }
 
+    @Nonnull
     public CountryDetail toCountryDetail() {
         CountryDetail countryDetail = new CountryDetail();
         countryDetail.setCapital(capital)
